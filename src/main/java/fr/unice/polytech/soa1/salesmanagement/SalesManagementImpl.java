@@ -3,9 +3,7 @@ package fr.unice.polytech.soa1.salesmanagement;
 import fr.unice.polytech.soa1.salesmanagement.data.*;
 
 import javax.jws.WebService;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @WebService(targetNamespace   = "http://informatique.polytech.unice.fr/soa1/salesmanagement/",
@@ -15,12 +13,16 @@ import java.util.List;
 public class SalesManagementImpl implements SalesManagementService {
 
     private Catalog catalog;
-    private List<OrderReference> orders;
+    private Map <Integer, OrderReference> orders;
+    private Map <Integer, OrderRequest> orderRequests;
+
+    static int nextOrderId = 0;
 
     public SalesManagementImpl() {
 
-        orders = new ArrayList<OrderReference>();
+        orders = new HashMap<Integer, OrderReference>();
         catalog = new Catalog();
+        orderRequests = new HashMap<Integer, OrderRequest>();
 
         Product p1 = new Product();
         p1.setName("Nice chair");
@@ -67,14 +69,23 @@ public class SalesManagementImpl implements SalesManagementService {
     public OrderReference makeOrder(OrderRequest orderRequest) {
         OrderReference order = estimateOrderRequest(orderRequest);
 
-        order.setOrderRequest(orderRequest);
-
         synchronized (orders) {
-            order.setId(orders.size());
-            orders.add(order);
+            int orderId = nextOrderId++;
+
+            order.setId(orderId);
+            orders.put(orderId, order);
+            orderRequests.put(orderId, orderRequest);
         }
 
         return order;
+    }
+
+    public OrderReference fetchOrderReference(int orderId) {
+        if (orders.containsKey(orderId)) {
+            return orders.get(orderId);
+        }
+
+        return null;
     }
 
     // Mock

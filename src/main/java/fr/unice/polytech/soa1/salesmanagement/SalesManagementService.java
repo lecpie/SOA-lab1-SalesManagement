@@ -17,6 +17,9 @@ public interface SalesManagementService {
     Catalog fetchCatalog();
 
     @WebResult(name = "order_reference")
-    OrderReference makeOrder(@WebParam(name = "order_request") OrderRequest orderRequest);
+    OrderReference makeOrder (@WebParam(name = "order_request") OrderRequest orderRequest);
+
+    @WebResult(name = "order_reference")
+    OrderReference fetchOrderReference (@WebParam(name = "order_id") int orderId);
 
 }

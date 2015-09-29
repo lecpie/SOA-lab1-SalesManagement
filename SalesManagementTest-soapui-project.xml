@@ -106,23 +106,25 @@
       <wsdl:output message="ns1:fetchCatalogResponse" name="fetchCatalogResponse"></wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint></con:endpoints><con:operation id="47c670cb-1447-438c-b522-8e7af323bf1e" isOneWay="false" action="" name="fetchCatalog" bindingOperationName="fetchCatalog" type="Request-Response" outputName="fetchCatalogResponse" inputName="fetchCatalog" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="64907b39-e979-4974-a20f-f028faade83b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint></con:endpoints><con:operation id="47c670cb-1447-438c-b522-8e7af323bf1e" isOneWay="false" action="" name="fetchCatalog" bindingOperationName="fetchCatalog" type="Request-Response" outputName="fetchCatalogResponse" inputName="fetchCatalog" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="64907b39-e979-4974-a20f-f028faade83b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <sal:fetchCatalog/>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchCatalog"/></con:call></con:operation><con:operation id="da7e3b9c-f364-439d-a55c-db1e99f03afc" isOneWay="false" action="" name="fetchItemInfo" bindingOperationName="fetchItemInfo" type="Request-Response" outputName="fetchItemInfoResponse" inputName="fetchItemInfo" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="401293b4-f857-41c1-988a-0df94511e59a" name="fetchItemInfo"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchCatalog"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="da7e3b9c-f364-439d-a55c-db1e99f03afc" isOneWay="false" action="" name="fetchCatalog" bindingOperationName="fetchItemInfo" type="Request-Response" outputName="fetchItemInfoResponse" inputName="fetchItemInfo" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="dfbd30ae-7ac7-4242-8f8a-e9a704b28eb7" name="fetchCatalog"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
-      <sal:fetchItemInfo>
-         <product_id>1</product_id>
-      </sal:fetchItemInfo>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchItemInfo"/><con:wsrmConfig version="1.2"/></con:call><con:call id="dfbd30ae-7ac7-4242-8f8a-e9a704b28eb7" name="fetchCatalog"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <sal:fetchCatalog>
-         
-      </sal:fetchCatalog>
+      <sal:makeOrder>
+         <order_request>
+         	<order_item>
+         		<product_id>1</product_id>
+         		<qty>2</qty>
+         	</order_item>
+         	<order_item>
+         		<product_id>2</product_id>
+         		<qty>3</qty>
+         	</order_item>
+         </order_request>
+      </sal:makeOrder>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchItemInfo"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
