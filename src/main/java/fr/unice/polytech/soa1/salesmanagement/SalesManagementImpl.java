@@ -1,11 +1,10 @@
 package fr.unice.polytech.soa1.salesmanagement;
 
-import fr.unice.polytech.soa1.salesmanagement.data.Catalog;
-import fr.unice.polytech.soa1.salesmanagement.data.Product;
-import fr.unice.polytech.soa1.salesmanagement.data.ProductType;
+import fr.unice.polytech.soa1.salesmanagement.data.*;
 
 import javax.jws.WebService;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,8 +15,11 @@ import java.util.List;
 public class SalesManagementImpl implements SalesManagementService {
 
     private Catalog catalog;
+    private List<OrderReference> orders;
 
     public SalesManagementImpl() {
+
+        orders = new ArrayList<OrderReference>();
         catalog = new Catalog();
 
         Product p1 = new Product();
@@ -62,4 +64,39 @@ public class SalesManagementImpl implements SalesManagementService {
         return catalog;
     }
 
+    public OrderReference makeOrder(OrderRequest orderRequest) {
+        OrderReference order = estimateOrderRequest(orderRequest);
+
+        order.setOrderRequest(orderRequest);
+
+        synchronized (orders) {
+            order.setId(orders.size());
+            orders.add(order);
+        }
+
+        return order;
+    }
+
+    // Mock
+    OrderReference estimateOrderRequest(OrderRequest orderRequest) {
+        OrderReference order = new OrderReference();
+
+        double price = 0;
+        for (OrderItem orderItem : orderRequest.getOrderData()) {
+            Product p = catalog.findId(orderItem.getProductId());
+
+            if (p == null) return null;
+
+            price += p.getPrice() * orderItem.getQty();
+        }
+
+        Date deliveryDate = new Date();
+
+        deliveryDate.setTime(deliveryDate.getTime() + 30*24*60*60);
+
+        order.setEstimatedDelivery(deliveryDate);
+        order.setPrice(price);
+
+        return order;
+    }
 }

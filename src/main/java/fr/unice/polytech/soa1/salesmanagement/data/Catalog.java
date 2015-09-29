@@ -11,7 +11,7 @@ import java.util.List;
 public class Catalog {
     private List<Product> products = new ArrayList<Product>();
 
-    @XmlElement(name = "products", required = true)
+    @XmlElement(name = "product", required = true)
     public List<Product> getProducts() { return (List<Product>) products; }
 
     synchronized
@@ -39,5 +39,15 @@ public class Catalog {
         }
 
         return false;
+    }
+
+    public Product findId (int id) {
+        for (Product p : products) {
+            if (id == p.getId()) {
+                return p;
+            }
+        }
+
+        return null;
     }
 }
