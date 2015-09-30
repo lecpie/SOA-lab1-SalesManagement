@@ -90,19 +90,24 @@ public class SalesManagementImpl implements SalesManagementService {
         return null;
     }
 
-    public String payOrder(int orderId, PaymentInfo paymentInfo) {
-        if (!orders.containsKey(orderId))
-            return "NO ORDER";
+    public PaymentResponse payOrder(int orderId, PaymentInfo paymentInfo) {
+        PaymentResponse paymentResponse = new PaymentResponse();
+        OrderReference order;
 
-        OrderReference order = orders.get(orderId);
+        if (!orders.containsKey(orderId)) {
+            paymentResponse.setSuccess(false);
+            paymentResponse.setMessage("NO ORDER");
+        }
+        else if ((order = orders.get(orderId)).getOrderStatus() != OrderStatus.REGISTERED) {
+            paymentResponse.setSuccess(false);
+            paymentResponse.setMessage("ALREADY PAID");
+        }
+        else {
+            paymentResponse = doPayment(paymentInfo, order);
+            order.setOrderStatus(OrderStatus.PRODUCING);
+        }
 
-        if(order.getOrderStatus() != OrderStatus.REGISTERED)
-            return "ALREADY PAID";
-
-        String paymentReference = doPayment(paymentInfo, order);
-        order.setOrderStatus(OrderStatus.PRODUCING);
-
-        return paymentReference;
+        return paymentResponse;
     }
 
     public List<OrderRequest> fetchProducingOrders() {
@@ -165,8 +170,15 @@ public class SalesManagementImpl implements SalesManagementService {
         return order;
     }
 
-    String doPayment(PaymentInfo paymentInfo, OrderReference orderReference) {
+    PaymentResponse doPayment(PaymentInfo paymentInfo, OrderReference orderReference) {
         // payment successful and random  payment reference
-        return Integer.toString((int) (Math.random() * 1000000000));
+
+        String paymentReference = Integer.toString((int) (Math.random() * 1000000000));
+
+        PaymentResponse response = new PaymentResponse();
+        response.setSuccess(true);
+        response.setMessage(paymentReference);
+
+        return response;
     }
 }
