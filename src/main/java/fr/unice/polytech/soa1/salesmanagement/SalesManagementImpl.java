@@ -73,6 +73,8 @@ public class SalesManagementImpl implements SalesManagementService {
             int orderId = nextOrderId++;
 
             order.setId(orderId);
+            order.setOrderStatus(OrderStatus.REGISTERED);
+
             orders.put(orderId, order);
             orderRequests.put(orderId, orderRequest);
         }
@@ -88,7 +90,22 @@ public class SalesManagementImpl implements SalesManagementService {
         return null;
     }
 
-    // Mock
+    public String payOrder(int orderId, PaymentInfo paymentInfo) {
+        if (!orders.containsKey(orderId))
+            return "NO ORDER";
+
+        OrderReference order = orders.get(orderId);
+
+        if(order.getOrderStatus() != OrderStatus.REGISTERED)
+            return "ALREADY PAID";
+
+        String paymentReference = doPayment(paymentInfo, order);
+        order.setOrderStatus(OrderStatus.PRODUCING);
+
+        return paymentReference;
+    }
+
+    // Mock for buisness layer
     OrderReference estimateOrderRequest(OrderRequest orderRequest) {
         OrderReference order = new OrderReference();
 
@@ -109,5 +126,10 @@ public class SalesManagementImpl implements SalesManagementService {
         order.setPrice(price);
 
         return order;
+    }
+
+    String doPayment(PaymentInfo paymentInfo, OrderReference orderReference) {
+        // payment successful and random  payment reference
+        return Integer.toString ((int)(Math.random()* 1000000000));
     }
 }

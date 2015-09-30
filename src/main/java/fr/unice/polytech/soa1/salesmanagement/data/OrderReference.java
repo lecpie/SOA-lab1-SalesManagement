@@ -12,6 +12,7 @@ public class OrderReference {
     private Date estimatedDelivery;
     private double price;
     private OrderRequest orderRequest;
+    private OrderStatus orderStatus;
 
     @XmlElement(name = "id", required = true)
     public int getId() { return id; }
@@ -24,5 +25,9 @@ public class OrderReference {
     @XmlElement(name = "price")
     public double getPrice() { return price; }
     public void   setPrice (double price) { this.price = price; }
+
+    @XmlElement(name = "order_status", required = true)
+    public OrderStatus getOrderStatus() { return orderStatus; }
+    public void setOrderStatus (OrderStatus orderStatus) { this.orderStatus = orderStatus; }
 
 }
