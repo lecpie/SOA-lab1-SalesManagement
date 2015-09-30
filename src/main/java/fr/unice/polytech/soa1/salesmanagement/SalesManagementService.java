@@ -14,6 +14,9 @@ public interface SalesManagementService {
     @WebResult(name = "catalog")
     Catalog fetchCatalog();
 
+    @WebResult(name = "product_id")
+    int addItemCatalog(@WebParam(name = "new_product") Product newProduct);
+
     @WebResult(name = "order_reference")
     OrderReference makeOrder (@WebParam(name = "order_request") OrderRequest orderRequest);
 

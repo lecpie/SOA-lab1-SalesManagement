@@ -24,6 +24,10 @@ public class SalesManagementImpl implements SalesManagementService {
         catalog = new Catalog();
         orderRequests = new HashMap<Integer, OrderRequest>();
 
+        // Create some data for testing
+
+        // Create some products
+
         Product p1 = new Product();
         p1.setName("Nice chair");
         p1.setPrice(40.0);
@@ -64,6 +68,12 @@ public class SalesManagementImpl implements SalesManagementService {
 
     public Catalog fetchCatalog() {
         return catalog;
+    }
+
+    public int addItemCatalog(Product newProduct) {
+        catalog.addProduct(newProduct);
+
+        return newProduct.getId();
     }
 
     public OrderReference makeOrder(OrderRequest orderRequest) {
