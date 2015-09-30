@@ -110,7 +110,7 @@ public class SalesManagementImpl implements SalesManagementService {
         OrderReference order = new OrderReference();
 
         double price = 0;
-        for (OrderItem orderItem : orderRequest.getOrderData()) {
+        for (OrderItem orderItem : orderRequest.getOrder()) {
             Product p = catalog.findId(orderItem.getProductId());
 
             if (p == null) return null;

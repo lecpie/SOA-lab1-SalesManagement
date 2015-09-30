@@ -19,8 +19,9 @@ public interface SalesManagementService {
     @WebResult(name = "order_reference")
     OrderReference fetchOrderReference (@WebParam(name = "order_id") int orderId);
 
-    @WebResult(name="payment_reference")
+    @WebResult(name = "payment_reference")
     String payOrder (@WebParam(name = "order_id") int orderId,
                   @WebParam(name = "payment_info") PaymentInfo paymentInfo);
+    
 
 }

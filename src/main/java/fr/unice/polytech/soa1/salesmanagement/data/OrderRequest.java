@@ -11,11 +11,14 @@ import java.util.Map;
 @XmlType
 public class OrderRequest {
 
-    private List<OrderItem> order = new ArrayList<OrderItem>();
+    private List <OrderItem> order;
+    private String address;
 
     @XmlElement(name = "order_item", required = true)
-    public List<OrderItem> getOrderData() {
+    public List<OrderItem> getOrder() { return order; }
+    public void setOrder (List <OrderItem> order) { this.order = order; }
 
-        return order;
-    }
+    @XmlElement(name = "address", required = true)
+    public String getAddress() { return address; }
+    public void setAddress (String address) { this.address = address; }
 }
