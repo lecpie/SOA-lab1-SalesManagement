@@ -329,40 +329,6 @@
    <soapenv:Body>
       <sal:fetchCatalog/>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchCatalog"/><con:wsrmConfig version="1.2"/></con:call><con:call id="8ffe53d8-9a8c-4b16-bb59-29f6b9443f68" name="fetchOrderReference"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <sal:fetchOrderReference>
-         <order_id>0</order_id>
-      </sal:fetchOrderReference>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchCatalog"/><con:wsrmConfig version="1.2"/></con:call><con:call id="245e4589-066e-44cb-a8ad-fea796ee5322" name="makeOrder"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <sal:makeOrder>
-         <order_request>
-         	<address>12 rue lambda - 12345 lambdaville</address>
-         	<order_item>
-         		<product_id>1</product_id>
-         		<qty>2</qty>
-         	</order_item>
-         	<order_item>
-         		<product_id>2</product_id>
-         		<qty>3</qty>
-         	</order_item>
-         </order_request>
-      </sal:makeOrder>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchCatalog"/><con:wsrmConfig version="1.2"/></con:call><con:call id="9f74152e-d498-4b6b-a300-9a294168850b" name="payOrder"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <sal:payOrder>
-      	<order_id>1</order_id>
-      	<payment_info>
-      		<
-      	</payment_info>
-      </sal:payOrder>
-   </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchCatalog"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="35a0dfbf-60ec-49d9-8abe-f23c40259df5" isOneWay="false" action="" name="payOrder" bindingOperationName="payOrder" type="Request-Response" outputName="payOrderResponse" inputName="payOrder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="92f8af5a-3fd4-44ae-a9d7-dc4eca8fdd66" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
@@ -382,41 +348,43 @@
          <order_id>0</order_id>
       </sal:fetchOrderReference>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchOrderReference"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="7b38068f-d5e6-4dc5-81c3-20d911870d98" isOneWay="false" action="" name="setOrderDelivering" bindingOperationName="setOrderDelivering" type="Request-Response" outputName="setOrderDeliveringResponse" inputName="setOrderDelivering" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c607bf91-78a9-4790-b007-266007b0ebaf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchOrderReference"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="7b38068f-d5e6-4dc5-81c3-20d911870d98" isOneWay="false" action="" name="setOrderDelivering" bindingOperationName="setOrderDelivering" type="Request-Response" outputName="setOrderDeliveringResponse" inputName="setOrderDelivering" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c607bf91-78a9-4790-b007-266007b0ebaf" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <sal:setOrderDelivering>
-         <order_id>?</order_id>
+         <order_id>0</order_id>
       </sal:setOrderDelivering>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/setOrderDelivering"/></con:call></con:operation><con:operation id="dbab7423-6218-4e84-909c-b4f5b0435414" isOneWay="false" action="" name="fetchProducingOrders" bindingOperationName="fetchProducingOrders" type="Request-Response" outputName="fetchProducingOrdersResponse" inputName="fetchProducingOrders" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b7f05cd8-d2d6-4fa6-9e96-156d4608f319" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/setOrderDelivering"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="dbab7423-6218-4e84-909c-b4f5b0435414" isOneWay="false" action="" name="fetchProducingOrders" bindingOperationName="fetchProducingOrders" type="Request-Response" outputName="fetchProducingOrdersResponse" inputName="fetchProducingOrders" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b7f05cd8-d2d6-4fa6-9e96-156d4608f319" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <sal:fetchProducingOrders/>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchProducingOrders"/></con:call></con:operation><con:operation id="be535183-c655-4934-b439-d8762f72d1c3" isOneWay="false" action="" name="makeOrder" bindingOperationName="makeOrder" type="Request-Response" outputName="makeOrderResponse" inputName="makeOrder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="668bf321-6721-403b-b00c-52968e154bc6" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchProducingOrders"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="be535183-c655-4934-b439-d8762f72d1c3" isOneWay="false" action="" name="makeOrder" bindingOperationName="makeOrder" type="Request-Response" outputName="makeOrderResponse" inputName="makeOrder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="668bf321-6721-403b-b00c-52968e154bc6" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <sal:makeOrder>
-         <!--Optional:-->
          <order_request>
-            <address>?</address>
-            <!--1 or more repetitions:-->
-            <order_item>
-               <product_id>?</product_id>
-               <qty>?</qty>
-            </order_item>
+         	<address>12 rue lambda - 12345 lambdaville</address>
+         	<order_item>
+         		<product_id>1</product_id>
+         		<qty>2</qty>
+         	</order_item>
+         	<order_item>
+         		<product_id>2</product_id>
+         		<qty>3</qty>
+         	</order_item>
          </order_request>
       </sal:makeOrder>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/makeOrder"/></con:call></con:operation><con:operation id="23eeca8a-3e36-4e59-b6fa-b1ffd05b2696" isOneWay="false" action="" name="setOrderDelivered" bindingOperationName="setOrderDelivered" type="Request-Response" outputName="setOrderDeliveredResponse" inputName="setOrderDelivered" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fefd1459-be5d-49d0-945a-8f951d9d1eb2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/makeOrder"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="23eeca8a-3e36-4e59-b6fa-b1ffd05b2696" isOneWay="false" action="" name="setOrderDelivered" bindingOperationName="setOrderDelivered" type="Request-Response" outputName="setOrderDeliveredResponse" inputName="setOrderDelivered" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fefd1459-be5d-49d0-945a-8f951d9d1eb2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <sal:setOrderDelivered>
-         <order_id>?</order_id>
+         <order_id>0</order_id>
       </sal:setOrderDelivered>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/setOrderDelivered"/></con:call></con:operation><con:operation id="8b6ad33b-b97c-448c-a71f-f8cf95e9853f" isOneWay="false" action="" name="addItemCatalog" bindingOperationName="addItemCatalog" type="Request-Response" outputName="addItemCatalogResponse" inputName="addItemCatalog" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bc5b0033-bb1a-4deb-9592-b2a43a8c37f2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/setOrderDelivered"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="8b6ad33b-b97c-448c-a71f-f8cf95e9853f" isOneWay="false" action="" name="addItemCatalog" bindingOperationName="addItemCatalog" type="Request-Response" outputName="addItemCatalogResponse" inputName="addItemCatalog" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bc5b0033-bb1a-4deb-9592-b2a43a8c37f2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <sal:addItemCatalog>
