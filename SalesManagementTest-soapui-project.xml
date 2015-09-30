@@ -12,12 +12,66 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="fetchItemInfo">
+    <wsdl:operation name="payOrder">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="fetchItemInfo">
+      <wsdl:input name="payOrder">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="fetchItemInfoResponse">
+      <wsdl:output name="payOrderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fetchOrderReference">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="fetchOrderReference">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="fetchOrderReferenceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setOrderDelivering">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setOrderDelivering">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setOrderDeliveringResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addItemCatalog">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addItemCatalog">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addItemCatalogResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fetchProducingOrders">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="fetchProducingOrders">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="fetchProducingOrdersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="makeOrder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="makeOrder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="makeOrderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setOrderDelivered">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setOrderDelivered">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setOrderDeliveredResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
@@ -30,39 +84,22 @@
 </wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8181/cxf/SalesManagement?wsdl=SalesManagement.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SalesManagement" targetNamespace="http://salesmanagement.soa1.polytech.unice.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://salesmanagement.soa1.polytech.unice.fr/">
   <wsdl:types>
     <xs:schema elementFormDefault="unqualified" targetNamespace="http://salesmanagement.soa1.polytech.unice.fr/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://salesmanagement.soa1.polytech.unice.fr/">
+      <xs:element name="addItemCatalog" type="tns:addItemCatalog"/>
+      <xs:element name="addItemCatalogResponse" type="tns:addItemCatalogResponse"/>
       <xs:element name="fetchCatalog" type="tns:fetchCatalog"/>
       <xs:element name="fetchCatalogResponse" type="tns:fetchCatalogResponse"/>
-      <xs:element name="fetchItemInfo" type="tns:fetchItemInfo"/>
-      <xs:element name="fetchItemInfoResponse" type="tns:fetchItemInfoResponse"/>
-      <xs:complexType name="fetchItemInfo">
-        <xs:sequence>
-          <xs:element name="product_id" type="xs:int"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="fetchItemInfoResponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="detailed_product" type="tns:detailedProduct"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="detailedProduct">
-        <xs:complexContent>
-          <xs:extension base="tns:product">
-            <xs:sequence>
-              <xs:element name="collection" type="xs:string"/>
-              <xs:element name="description" type="xs:string"/>
-              <xs:element name="image_link" type="xs:string"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:complexType name="product">
-        <xs:sequence>
-          <xs:element name="id" type="xs:int"/>
-          <xs:element name="name" type="xs:string"/>
-          <xs:element name="price" type="xs:double"/>
-          <xs:element name="product_type" type="tns:productType"/>
-        </xs:sequence>
-      </xs:complexType>
+      <xs:element name="fetchOrderReference" type="tns:fetchOrderReference"/>
+      <xs:element name="fetchOrderReferenceResponse" type="tns:fetchOrderReferenceResponse"/>
+      <xs:element name="fetchProducingOrders" type="tns:fetchProducingOrders"/>
+      <xs:element name="fetchProducingOrdersResponse" type="tns:fetchProducingOrdersResponse"/>
+      <xs:element name="makeOrder" type="tns:makeOrder"/>
+      <xs:element name="makeOrderResponse" type="tns:makeOrderResponse"/>
+      <xs:element name="payOrder" type="tns:payOrder"/>
+      <xs:element name="payOrderResponse" type="tns:payOrderResponse"/>
+      <xs:element name="setOrderDelivered" type="tns:setOrderDelivered"/>
+      <xs:element name="setOrderDeliveredResponse" type="tns:setOrderDeliveredResponse"/>
+      <xs:element name="setOrderDelivering" type="tns:setOrderDelivering"/>
+      <xs:element name="setOrderDeliveringResponse" type="tns:setOrderDeliveringResponse"/>
       <xs:complexType name="fetchCatalog">
         <xs:sequence/>
       </xs:complexType>
@@ -73,7 +110,120 @@
       </xs:complexType>
       <xs:complexType name="catalog">
         <xs:sequence>
-          <xs:element maxOccurs="unbounded" name="products" type="tns:product"/>
+          <xs:element maxOccurs="unbounded" name="product" type="tns:product"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="product">
+        <xs:sequence>
+          <xs:element name="collection" type="xs:string"/>
+          <xs:element name="description" type="xs:string"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="image_link" type="xs:string"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="price" type="xs:double"/>
+          <xs:element name="product_type" type="tns:productType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="payOrder">
+        <xs:sequence>
+          <xs:element name="order_id" type="xs:int"/>
+          <xs:element minOccurs="0" name="payment_info" type="tns:paymentInfo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="paymentInfo">
+        <xs:sequence>
+          <xs:element name="card_expire" type="xs:string"/>
+          <xs:element name="card_number" type="xs:string"/>
+          <xs:element name="csc" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="payOrderResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="payment_reference" type="tns:paymentResponse"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="paymentResponse">
+        <xs:sequence>
+          <xs:element name="message" type="xs:string"/>
+          <xs:element name="success" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="fetchOrderReference">
+        <xs:sequence>
+          <xs:element name="order_id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="fetchOrderReferenceResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="order_reference" type="tns:orderReference"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="orderReference">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="estimated_delivery" type="xs:dateTime"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="order_status" type="tns:orderStatus"/>
+          <xs:element name="price" type="xs:double"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="setOrderDelivering">
+        <xs:sequence>
+          <xs:element name="order_id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="setOrderDeliveringResponse">
+        <xs:sequence>
+          <xs:element name="status" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="fetchProducingOrders">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="fetchProducingOrdersResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="producing_order" type="tns:orderRequest"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="orderRequest">
+        <xs:sequence>
+          <xs:element name="address" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" name="order_item" type="tns:orderItem"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="orderItem">
+        <xs:sequence>
+          <xs:element name="product_id" type="xs:int"/>
+          <xs:element name="qty" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addItemCatalog">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="new_product" type="tns:product"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addItemCatalogResponse">
+        <xs:sequence>
+          <xs:element name="product_id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="makeOrder">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="order_request" type="tns:orderRequest"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="makeOrderResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="order_reference" type="tns:orderReference"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="setOrderDelivered">
+        <xs:sequence>
+          <xs:element name="order_id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="setOrderDeliveredResponse">
+        <xs:sequence>
+          <xs:element name="status" type="xs:boolean"/>
         </xs:sequence>
       </xs:complexType>
       <xs:simpleType name="productType">
@@ -82,31 +232,99 @@
           <xs:enumeration value="TABLE"/>
         </xs:restriction>
       </xs:simpleType>
+      <xs:simpleType name="orderStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="REGISTERED"/>
+          <xs:enumeration value="PRODUCING"/>
+          <xs:enumeration value="DELIVERING"/>
+          <xs:enumeration value="DELIVERED"/>
+        </xs:restriction>
+      </xs:simpleType>
     </xs:schema>
   </wsdl:types>
+  <wsdl:message name="addItemCatalog">
+    <wsdl:part element="ns1:addItemCatalog" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="payOrder">
+    <wsdl:part element="ns1:payOrder" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="fetchOrderReference">
+    <wsdl:part element="ns1:fetchOrderReference" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="makeOrderResponse">
+    <wsdl:part element="ns1:makeOrderResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setOrderDeliveringResponse">
+    <wsdl:part element="ns1:setOrderDeliveringResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setOrderDelivered">
+    <wsdl:part element="ns1:setOrderDelivered" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addItemCatalogResponse">
+    <wsdl:part element="ns1:addItemCatalogResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setOrderDelivering">
+    <wsdl:part element="ns1:setOrderDelivering" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setOrderDeliveredResponse">
+    <wsdl:part element="ns1:setOrderDeliveredResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="payOrderResponse">
+    <wsdl:part element="ns1:payOrderResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="fetchCatalogResponse">
     <wsdl:part element="ns1:fetchCatalogResponse" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="fetchItemInfo">
-    <wsdl:part element="ns1:fetchItemInfo" name="parameters"></wsdl:part>
+  <wsdl:message name="fetchProducingOrders">
+    <wsdl:part element="ns1:fetchProducingOrders" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="fetchOrderReferenceResponse">
+    <wsdl:part element="ns1:fetchOrderReferenceResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="fetchProducingOrdersResponse">
+    <wsdl:part element="ns1:fetchProducingOrdersResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="makeOrder">
+    <wsdl:part element="ns1:makeOrder" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="fetchCatalog">
     <wsdl:part element="ns1:fetchCatalog" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="fetchItemInfoResponse">
-    <wsdl:part element="ns1:fetchItemInfoResponse" name="parameters"></wsdl:part>
-  </wsdl:message>
   <wsdl:portType name="SalesManagement">
-    <wsdl:operation name="fetchItemInfo">
-      <wsdl:input message="ns1:fetchItemInfo" name="fetchItemInfo"></wsdl:input>
-      <wsdl:output message="ns1:fetchItemInfoResponse" name="fetchItemInfoResponse"></wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="fetchCatalog">
       <wsdl:input message="ns1:fetchCatalog" name="fetchCatalog"></wsdl:input>
       <wsdl:output message="ns1:fetchCatalogResponse" name="fetchCatalogResponse"></wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="payOrder">
+      <wsdl:input message="ns1:payOrder" name="payOrder"></wsdl:input>
+      <wsdl:output message="ns1:payOrderResponse" name="payOrderResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fetchOrderReference">
+      <wsdl:input message="ns1:fetchOrderReference" name="fetchOrderReference"></wsdl:input>
+      <wsdl:output message="ns1:fetchOrderReferenceResponse" name="fetchOrderReferenceResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setOrderDelivering">
+      <wsdl:input message="ns1:setOrderDelivering" name="setOrderDelivering"></wsdl:input>
+      <wsdl:output message="ns1:setOrderDeliveringResponse" name="setOrderDeliveringResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fetchProducingOrders">
+      <wsdl:input message="ns1:fetchProducingOrders" name="fetchProducingOrders"></wsdl:input>
+      <wsdl:output message="ns1:fetchProducingOrdersResponse" name="fetchProducingOrdersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addItemCatalog">
+      <wsdl:input message="ns1:addItemCatalog" name="addItemCatalog"></wsdl:input>
+      <wsdl:output message="ns1:addItemCatalogResponse" name="addItemCatalogResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="makeOrder">
+      <wsdl:input message="ns1:makeOrder" name="makeOrder"></wsdl:input>
+      <wsdl:output message="ns1:makeOrderResponse" name="makeOrderResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setOrderDelivered">
+      <wsdl:input message="ns1:setOrderDelivered" name="setOrderDelivered"></wsdl:input>
+      <wsdl:output message="ns1:setOrderDeliveredResponse" name="setOrderDeliveredResponse"></wsdl:output>
+    </wsdl:operation>
   </wsdl:portType>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint></con:endpoints><con:operation id="47c670cb-1447-438c-b522-8e7af323bf1e" isOneWay="false" action="" name="tests" bindingOperationName="fetchCatalog" type="Request-Response" outputName="fetchCatalogResponse" inputName="fetchCatalog" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="64907b39-e979-4974-a20f-f028faade83b" name="fetchCatalog"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint></con:endpoints><con:operation id="47c670cb-1447-438c-b522-8e7af323bf1e" isOneWay="false" action="" name="fetchCatalog" bindingOperationName="fetchCatalog" type="Request-Response" outputName="fetchCatalogResponse" inputName="fetchCatalog" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="64907b39-e979-4974-a20f-f028faade83b" name="fetchCatalog"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <sal:fetchCatalog/>
@@ -123,6 +341,7 @@
    <soapenv:Body>
       <sal:makeOrder>
          <order_request>
+         	<address>12 rue lambda - 12345 lambdaville</address>
          	<order_item>
          		<product_id>1</product_id>
          		<qty>2</qty>
@@ -134,4 +353,81 @@
          </order_request>
       </sal:makeOrder>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchCatalog"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="da7e3b9c-f364-439d-a55c-db1e99f03afc" isOneWay="false" action="" name="fetchCatalog" bindingOperationName="fetchItemInfo" type="Request-Response" outputName="fetchItemInfoResponse" inputName="fetchItemInfo" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchCatalog"/><con:wsrmConfig version="1.2"/></con:call><con:call id="9f74152e-d498-4b6b-a300-9a294168850b" name="payOrder"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sal:payOrder>
+      	<order_id>1</order_id>
+      	<payment_info>
+      		<
+      	</payment_info>
+      </sal:payOrder>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchCatalog"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="35a0dfbf-60ec-49d9-8abe-f23c40259df5" isOneWay="false" action="" name="payOrder" bindingOperationName="payOrder" type="Request-Response" outputName="payOrderResponse" inputName="payOrder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="92f8af5a-3fd4-44ae-a9d7-dc4eca8fdd66" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sal:payOrder>
+         <order_id>0</order_id>
+         <payment_info>
+            <card_expire>1217</card_expire>
+            <card_number>1234123412341234</card_number>
+            <csc>123</csc>
+         </payment_info>
+      </sal:payOrder>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/payOrder"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="be462a79-e0cc-462c-a914-ea67df00cfcd" isOneWay="false" action="" name="fetchOrderReference" bindingOperationName="fetchOrderReference" type="Request-Response" outputName="fetchOrderReferenceResponse" inputName="fetchOrderReference" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ddef2edf-772b-4b5b-b7b3-ae06b41ecf63" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sal:fetchOrderReference>
+         <order_id>0</order_id>
+      </sal:fetchOrderReference>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchOrderReference"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="7b38068f-d5e6-4dc5-81c3-20d911870d98" isOneWay="false" action="" name="setOrderDelivering" bindingOperationName="setOrderDelivering" type="Request-Response" outputName="setOrderDeliveringResponse" inputName="setOrderDelivering" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c607bf91-78a9-4790-b007-266007b0ebaf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sal:setOrderDelivering>
+         <order_id>?</order_id>
+      </sal:setOrderDelivering>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/setOrderDelivering"/></con:call></con:operation><con:operation id="dbab7423-6218-4e84-909c-b4f5b0435414" isOneWay="false" action="" name="fetchProducingOrders" bindingOperationName="fetchProducingOrders" type="Request-Response" outputName="fetchProducingOrdersResponse" inputName="fetchProducingOrders" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b7f05cd8-d2d6-4fa6-9e96-156d4608f319" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sal:fetchProducingOrders/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/fetchProducingOrders"/></con:call></con:operation><con:operation id="be535183-c655-4934-b439-d8762f72d1c3" isOneWay="false" action="" name="makeOrder" bindingOperationName="makeOrder" type="Request-Response" outputName="makeOrderResponse" inputName="makeOrder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="668bf321-6721-403b-b00c-52968e154bc6" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sal:makeOrder>
+         <!--Optional:-->
+         <order_request>
+            <address>?</address>
+            <!--1 or more repetitions:-->
+            <order_item>
+               <product_id>?</product_id>
+               <qty>?</qty>
+            </order_item>
+         </order_request>
+      </sal:makeOrder>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/makeOrder"/></con:call></con:operation><con:operation id="23eeca8a-3e36-4e59-b6fa-b1ffd05b2696" isOneWay="false" action="" name="setOrderDelivered" bindingOperationName="setOrderDelivered" type="Request-Response" outputName="setOrderDeliveredResponse" inputName="setOrderDelivered" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fefd1459-be5d-49d0-945a-8f951d9d1eb2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sal:setOrderDelivered>
+         <order_id>?</order_id>
+      </sal:setOrderDelivered>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/setOrderDelivered"/></con:call></con:operation><con:operation id="8b6ad33b-b97c-448c-a71f-f8cf95e9853f" isOneWay="false" action="" name="addItemCatalog" bindingOperationName="addItemCatalog" type="Request-Response" outputName="addItemCatalogResponse" inputName="addItemCatalog" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bc5b0033-bb1a-4deb-9592-b2a43a8c37f2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sal:addItemCatalog>
+         <new_product>
+            <collection>Azur</collection>
+            <description>This is an azur chair</description>
+            <image_link>link.link/img.png</image_link>
+            <name>Azur chair</name>
+            <price>120</price>
+            <product_type>CHAIR</product_type>
+         </new_product>
+      </sal:addItemCatalog>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/addItemCatalog"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
