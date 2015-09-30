@@ -105,6 +105,43 @@ public class SalesManagementImpl implements SalesManagementService {
         return paymentReference;
     }
 
+    public List<OrderRequest> fetchProducingOrders() {
+        List<OrderRequest> producingRequests = new ArrayList<OrderRequest>();
+
+        for (Integer orderId : orders.keySet()) {
+            OrderReference orderReference = orders.get(orderId);
+
+            if (orderReference.getOrderStatus() == OrderStatus.PRODUCING) {
+                producingRequests.add(orderRequests.get(orderId));
+            }
+        }
+
+        return producingRequests;
+    }
+
+    public boolean setOrderDelivering(int orderId) {
+        OrderReference orderReference = orders.get(orderId);
+
+        if (orderReference.getOrderStatus() == OrderStatus.PRODUCING) {
+            orderReference.setOrderStatus(OrderStatus.DELIVERING);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean setOrderDelivered(int orderId) {
+        OrderReference orderReference = orders.get(orderId);
+
+        if (orderReference.getOrderStatus() == OrderStatus.DELIVERING) {
+            orderReference.setOrderStatus(OrderStatus.DELIVERED);
+
+            return true;
+        }
+
+        return false;    }
+
     // Mock for buisness layer
     OrderReference estimateOrderRequest(OrderRequest orderRequest) {
         OrderReference order = new OrderReference();
@@ -130,6 +167,6 @@ public class SalesManagementImpl implements SalesManagementService {
 
     String doPayment(PaymentInfo paymentInfo, OrderReference orderReference) {
         // payment successful and random  payment reference
-        return Integer.toString ((int)(Math.random()* 1000000000));
+        return Integer.toString((int) (Math.random() * 1000000000));
     }
 }

@@ -6,6 +6,7 @@ import fr.unice.polytech.soa1.salesmanagement.data.*;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import java.util.List;
 
 @WebService(name = "SalesManagement")
 public interface SalesManagementService {
@@ -22,6 +23,13 @@ public interface SalesManagementService {
     @WebResult(name = "payment_reference")
     String payOrder (@WebParam(name = "order_id") int orderId,
                   @WebParam(name = "payment_info") PaymentInfo paymentInfo);
-    
 
+    @WebResult(name = "producing_order")
+    List<OrderRequest> fetchProducingOrders();
+
+    @WebResult(name = "status")
+    boolean setOrderDelivering (@WebParam(name = "order_id") int orderId);
+
+    @WebResult(name = "status")
+    boolean setOrderDelivered (@WebParam(name = "order_id") int orderId);
 }
