@@ -5,14 +5,24 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SalesManagementTest extends TestCase {
 
     private SalesManagementService service = null;
+    private String testAddress;
+    private PaymentInfo testPaymentInfo;
 
     public void setUp() {
         service = new SalesManagementImpl();
+        testAddress = "123 Lambda street - 12345 Lambdatown";
+
+        testPaymentInfo = new PaymentInfo();
+        testPaymentInfo.setCardNumber("1234123412341234");
+        testPaymentInfo.setCardExpire("1217");
+        testPaymentInfo.setCsc("123");
     }
 
     @Test
@@ -27,6 +37,34 @@ public class SalesManagementTest extends TestCase {
         assertTrue("Invalid initial catalog initialization", catalog.getProducts().size() >= 4);
     }
 
+    private List <OrderItem> buildTestOrder() {
+
+        Catalog catalog = service.fetchCatalog();
+        List <OrderItem> orderItems = new ArrayList<OrderItem>();
+
+        OrderItem orderItem1 = new OrderItem();
+        orderItem1.setProductId(catalog.getProducts().get(0).getId());
+        orderItem1.setQty(10);
+
+        OrderItem orderItem2 = new OrderItem();
+        orderItem2.setProductId(catalog.getProducts().get(1).getId());
+        orderItem2.setQty(20);
+
+        orderItems.add (orderItem1);
+        orderItems.add (orderItem2);
+
+        return orderItems;
+    }
+
+    private OrderRequest buildTestOrderRequest(List <OrderItem> orderItems) {
+        OrderRequest orderRequest = new OrderRequest();
+
+        orderRequest.setOrder(orderItems);
+        orderRequest.setAddress(testAddress);
+
+        return orderRequest;
+    }
+
     @Test
     public void testNormalSalesProcess() {
 
@@ -34,28 +72,9 @@ public class SalesManagementTest extends TestCase {
         Catalog catalog = service.fetchCatalog();
 
         // Initialize an order with the first 2 items
-        int itemId1 = catalog.getProducts().get(0).getId();
-        int itemId2 = catalog.getProducts().get(1).getId();
-        int qty1 = 10;
-        int qty2 = 20;
+        List <OrderItem> orderItems = buildTestOrder();
 
-        List <OrderItem> orderItems = new ArrayList<OrderItem>();
-        OrderItem orderItem1 = new OrderItem();
-        orderItem1.setProductId(itemId1);
-        orderItem1.setQty(qty1);
-
-        OrderItem orderItem2 = new OrderItem();
-        orderItem2.setProductId(itemId2);
-        orderItem2.setQty(qty2);
-
-        orderItems.add (orderItem1);
-        orderItems.add (orderItem2);
-
-        String address = "123 Lambda street - 12345 Lambdatown";
-
-        OrderRequest orderRequest = new OrderRequest();
-        orderRequest.setOrder(orderItems);
-        orderRequest.setAddress(address);
+        OrderRequest orderRequest = buildTestOrderRequest (orderItems);
 
         // Make the order
         OrderReference initialOrderReference = service.makeOrder(orderRequest);
@@ -67,8 +86,11 @@ public class SalesManagementTest extends TestCase {
         // but that there could be some delivery cost
 
         double orderPrice = initialOrderReference.getPrice();
-        double minPrice = qty1 * catalog.findId(itemId1).getPrice()
-                        + qty2 * catalog.findId(itemId2).getPrice();
+        double minPrice = 0;
+
+        for (OrderItem orderItem : orderItems) {
+            minPrice += catalog.findId(orderItem.getProductId()).getPrice() * orderItem.getQty();
+        }
 
         assertTrue("Price not coherent", orderPrice >= minPrice);
 
@@ -82,19 +104,10 @@ public class SalesManagementTest extends TestCase {
         assertEquals("Initial order reference different from fetched order reference",
                 initialOrderReference.getId(), fetchedOrderReference.getId());
 
-        String cardNumber = "1234123412341234";
-        String cardExpire = "1217";
-        String csc        = "123";
-
-        PaymentInfo paymentInfo = new PaymentInfo();
-        paymentInfo.setCardNumber(cardNumber);
-        paymentInfo.setCardExpire(cardExpire);
-        paymentInfo.setCsc(csc);
-
         // Save producing order size before payment for testing change later
         int producingOrdersSize = service.fetchProducingOrders().size();
 
-        PaymentResponse paymentResponse = service.payOrder(initialOrderReference.getId(), paymentInfo);
+        PaymentResponse paymentResponse = service.payOrder(initialOrderReference.getId(), testPaymentInfo);
 
         assertTrue("Payment not successful after order", paymentResponse.isSuccess());
         String paymentReference = paymentResponse.getMessage();
@@ -102,7 +115,7 @@ public class SalesManagementTest extends TestCase {
         assertNotNull("Payment reference not returned", paymentReference);
 
         // Try to pay again should fail
-        assertFalse("Successfully paid an order twice", service.payOrder(initialOrderReference.getId(), paymentInfo).isSuccess());
+        assertFalse("Successfully paid an order twice", service.payOrder(initialOrderReference.getId(), testPaymentInfo).isSuccess());
 
         // Order status should have changed, fetch it again to avoid assiming it's the same object
         assertEquals("Invalid order status after payment",
