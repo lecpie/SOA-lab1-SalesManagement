@@ -4,6 +4,7 @@ import fr.unice.polytech.soa1.salesmanagement.data.*;
 import junit.framework.TestCase;
 import org.junit.Test;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +50,7 @@ public class SalesManagementTest extends TestCase {
         OrderItem orderItem2 = new OrderItem();
         orderItem2.setProductId(catalog.getProducts().get(1).getId());
         orderItem2.setQty(20);
+        orderItem2.setOption("Black");
 
         orderItems.add (orderItem1);
         orderItems.add (orderItem2);

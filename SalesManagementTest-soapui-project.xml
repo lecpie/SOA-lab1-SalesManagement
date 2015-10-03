@@ -369,6 +369,7 @@
          	<order_item>
          		<product_id>1</product_id>
          		<qty>2</qty>
+         		<option>Black</option>
          	</order_item>
          	<order_item>
          		<product_id>2</product_id>

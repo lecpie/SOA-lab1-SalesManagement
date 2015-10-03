@@ -11,7 +11,6 @@ public class OrderReference {
     private int id;
     private Date estimatedDelivery;
     private double price;
-    private OrderRequest orderRequest;
     private OrderStatus orderStatus;
 
     @XmlElement(name = "id", required = true)
