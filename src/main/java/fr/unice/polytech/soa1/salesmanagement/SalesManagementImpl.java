@@ -25,7 +25,10 @@ public class SalesManagementImpl implements SalesManagementService {
         orderRequests = new HashMap<Integer, OrderRequest>();
 
         // Create some data for testing
+        createSampleData();
+    }
 
+    private void createSampleData() {
         // Create some products
 
         Product p1 = new Product();
@@ -84,6 +87,8 @@ public class SalesManagementImpl implements SalesManagementService {
 
             order.setId(orderId);
             order.setOrderStatus(OrderStatus.REGISTERED);
+
+            orderRequest.setOrderId(orderId);
 
             orders.put(orderId, order);
             orderRequests.put(orderId, orderRequest);
