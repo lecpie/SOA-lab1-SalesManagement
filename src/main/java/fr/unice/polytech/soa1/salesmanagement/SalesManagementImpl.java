@@ -157,6 +157,17 @@ public class SalesManagementImpl implements SalesManagementService {
 
         return false;    }
 
+    public boolean cancelOrder(int orderId) {
+        if (! orders.containsKey(orderId)) {
+            return false;
+        }
+
+        orders.remove(orderId);
+        orderRequests.remove(orderId);
+
+        return true;
+    }
+
     // Mock for buisness layer
     OrderReference estimateOrderRequest(OrderRequest orderRequest) {
         OrderReference order = new OrderReference();

@@ -35,4 +35,7 @@ public interface SalesManagementService {
 
     @WebResult(name = "status")
     boolean setOrderDelivered (@WebParam(name = "order_id") int orderId);
+
+    @WebResult(name = "status")
+    boolean cancelOrder (@WebParam(name = "order_id") int orderId);
 }
