@@ -116,6 +116,7 @@ public class SalesManagementImpl implements SalesManagementService {
         else if ((order = orders.get(orderId)).getOrderStatus() != OrderStatus.REGISTERED) {
             paymentResponse.setSuccess(false);
             paymentResponse.setMessage("ALREADY PAID");
+            // mounir test line
         }
         else if ((paymentResponse = doPayment(paymentInfo, order, paymentPlan)).isSuccess()) {
             order.setOrderStatus(OrderStatus.PRODUCING);
