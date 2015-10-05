@@ -10,6 +10,7 @@ import java.util.List;
 @XmlType
 public class Catalog {
     private List<Product> products = new ArrayList<Product>();
+    private int nextId = 0;
 
     @XmlElement(name = "product", required = true)
     public List<Product> getProducts() { return (List<Product>) products; }
@@ -18,8 +19,7 @@ public class Catalog {
     public void addProduct(Product product) {
 
         synchronized (products) {
-            int id = products.size();
-            product.setId(id);
+            product.setId(nextId++);
 
             this.products.add(product);
         }

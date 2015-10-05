@@ -6,13 +6,13 @@ import java.awt.*;
 
 @XmlType
 public class OrderItem {
-    private int productId;
+    private Product product;
     private int qty;
     private String option;
 
-    @XmlElement(name = "product_id", required = true)
-    public int getProductId() { return productId; }
-    public void setProductId (int productId) { this.productId = productId; }
+    @XmlElement(name = "product", required = true)
+    public Product getProduct() { return product; }
+    public void setProduct (Product product) { this.product = product; }
 
     @XmlElement(name = "qty", required = true)
     public int getQty() { return qty; }

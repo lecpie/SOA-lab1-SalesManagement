@@ -32,9 +32,25 @@ http://cxf.apache.org/blueprint/jaxws http://cxf.apache.org/schemas/blueprint/ja
             <cxf:logging/>
         </cxf:features>
     </cxf:bus>
-    <jaxws:endpoint id="salesmngmt"
-                    implementor="fr.unice.polytech.soa1.salesmanagement.SalesManagementImpl"
-                    address="/SalesManagement">
+
+    <jaxws:endpoint id="catalog_service_endpoint"
+                    implementor="fr.unice.polytech.soa1.salesmanagement.CatalogServiceImpl"
+                    address="/CatalogServiceImpl">
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="order_service_endpoint"
+                    implementor="fr.unice.polytech.soa1.salesmanagement.OrderServiceImpl"
+                    address="/OrderServiceImpl">
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="client_service_endpoint"
+                    implementor="fr.unice.polytech.soa1.salesmanagement.ClientServiceImpl"
+                    address="/ClientServiceImpl">
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="billing_service_endpoint"
+                    implementor="fr.unice.polytech.soa1.salesmanagement.BillingServiceImpl"
+                    address="/BillingServiceImpl">
     </jaxws:endpoint>
 
 </blueprint>
