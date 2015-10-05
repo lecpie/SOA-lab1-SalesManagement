@@ -109,7 +109,8 @@ public class SalesManagementTest extends TestCase {
         // Save producing order size before payment for testing change later
         int producingOrdersSize = service.fetchProducingOrders().size();
 
-        PaymentResponse paymentResponse = service.payOrder(initialOrderReference.getId(), testPaymentInfo);
+        PaymentResponse paymentResponse = service.payOrder(initialOrderReference.getId(),
+                testPaymentInfo, PaymentPlan.DIRECT);
 
         assertTrue("Payment not successful after order", paymentResponse.isSuccess());
         String paymentReference = paymentResponse.getMessage();
@@ -117,7 +118,8 @@ public class SalesManagementTest extends TestCase {
         assertNotNull("Payment reference not returned", paymentReference);
 
         // Try to pay again should fail
-        assertFalse("Successfully paid an order twice", service.payOrder(initialOrderReference.getId(), testPaymentInfo).isSuccess());
+        assertFalse("Successfully paid an order twice",
+                service.payOrder(initialOrderReference.getId(), testPaymentInfo, PaymentPlan.DIRECT).isSuccess());
 
         // Order status should have changed, fetch it again to avoid assiming it's the same object
         assertEquals("Invalid order status after payment",

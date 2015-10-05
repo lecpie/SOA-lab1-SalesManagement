@@ -185,6 +185,7 @@
         <xs:sequence>
           <xs:element name="order_id" type="xs:int"/>
           <xs:element minOccurs="0" name="payment_info" type="tns:paymentInfo"/>
+          <xs:element minOccurs="0" name="payment_plan" type="tns:paymentPlan"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="paymentInfo">
@@ -285,6 +286,13 @@
           <xs:enumeration value="PRODUCING"/>
           <xs:enumeration value="DELIVERING"/>
           <xs:enumeration value="DELIVERED"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="paymentPlan">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DIRECT"/>
+          <xs:enumeration value="SHORT"/>
+          <xs:enumeration value="LONG"/>
         </xs:restriction>
       </xs:simpleType>
       <xs:simpleType name="productType">
@@ -469,7 +477,7 @@
          <order_id>0</order_id>
       </sal:cancelOrder>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/cancelOrder"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="92f97a5a-6b01-4ca6-84df-c1d368737676" name="ExternalSalesManagerServiceSoapBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="29590fad-1d49-4acd-8fdf-59d9d2c2ddfc" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ExternalSalesManagerServiceSoapBinding TestSuite" searchProperties="true"><con:settings/><con:testStep type="properties" name="test_properties" id="9349b1a6-7793-4ccc-bdf1-cdc8f696cc97"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>order_id</con:name><con:value>7</con:value></con:property><con:property><con:name>product_id1</con:name><con:value>0</con:value></con:property><con:property><con:name>product_id2</con:name><con:value>1</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" id="4c7749a4-2f95-46b6-9983-b73a8ec8dcbb" name="fetchCatalog"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ExternalSalesManagerServiceSoapBinding</con:interface><con:operation>fetchCatalog</con:operation><con:request name="fetchCatalog" id="ca8fe859-b69c-413c-96de-22d967763c28"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/cancelOrder"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="92f97a5a-6b01-4ca6-84df-c1d368737676" name="ExternalSalesManagerServiceSoapBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="29590fad-1d49-4acd-8fdf-59d9d2c2ddfc" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ExternalSalesManagerServiceSoapBinding TestSuite" searchProperties="true"><con:settings/><con:testStep type="properties" name="test_properties" id="9349b1a6-7793-4ccc-bdf1-cdc8f696cc97"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>order_id</con:name><con:value>0</con:value></con:property><con:property><con:name>product_id1</con:name><con:value>0</con:value></con:property><con:property><con:name>product_id2</con:name><con:value>1</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" id="4c7749a4-2f95-46b6-9983-b73a8ec8dcbb" name="fetchCatalog"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ExternalSalesManagerServiceSoapBinding</con:interface><con:operation>fetchCatalog</con:operation><con:request name="fetchCatalog" id="ca8fe859-b69c-413c-96de-22d967763c28"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <sal:fetchCatalog/>
@@ -509,6 +517,7 @@
             <card_number>1234123412341234</card_number>
             <csc>123</csc>
          </payment_info>
+         <payment_plan>DIRECT</payment_plan>
       </sal:payOrder>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="87fb38ef-d5d6-4acb-ae68-2d16df19b3e4" name="SOAP Response"/><con:assertion type="Schema Compliance" id="44e8e58c-2ef6-4b68-af71-94ded9aef02f" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="734c0a1d-ac46-43e6-beaf-ce1687aa4cec" name="XPath Match"><con:configuration><path>//payment_reference/success</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://informatique.polytech.unice.fr/soa1/salesmanagement/SalesManagement/payOrder" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Check order status after payment" id="1a458dfc-fb0c-412a-8f35-a41e85859938"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ExternalSalesManagerServiceSoapBinding</con:interface><con:operation>fetchOrderReference</con:operation><con:request name="Check order status after payment" id="aa657f5f-2e58-4721-9ca5-c80da4b3f23a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/SalesManagement</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">

@@ -25,7 +25,8 @@ public interface SalesManagementService {
 
     @WebResult(name = "payment_reference")
     PaymentResponse payOrder (@WebParam(name = "order_id") int orderId,
-                  @WebParam(name = "payment_info") PaymentInfo paymentInfo);
+                              @WebParam(name = "payment_info") PaymentInfo paymentInfo,
+                              @WebParam(name = "payment_plan") PaymentPlan paymentPlan);
 
     @WebResult(name = "producing_order")
     List<OrderRequest> fetchProducingOrders();

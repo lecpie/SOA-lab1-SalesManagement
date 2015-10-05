@@ -105,7 +105,7 @@ public class SalesManagementImpl implements SalesManagementService {
         return null;
     }
 
-    public PaymentResponse payOrder(int orderId, PaymentInfo paymentInfo) {
+    public PaymentResponse payOrder(int orderId, PaymentInfo paymentInfo, PaymentPlan paymentPlan) {
         PaymentResponse paymentResponse = new PaymentResponse();
         OrderReference order;
 
@@ -118,7 +118,7 @@ public class SalesManagementImpl implements SalesManagementService {
             paymentResponse.setMessage("ALREADY PAID");
         }
         else {
-            paymentResponse = doPayment(paymentInfo, order);
+            paymentResponse = doPayment(paymentInfo, order, paymentPlan);
             order.setOrderStatus(OrderStatus.PRODUCING);
         }
 
@@ -173,7 +173,8 @@ public class SalesManagementImpl implements SalesManagementService {
         return true;
     }
 
-    // Mock for buisness layer
+    // Mocks for buisness layer
+
     OrderReference estimateOrderRequest(OrderRequest orderRequest) {
         OrderReference order = new OrderReference();
 
@@ -196,7 +197,7 @@ public class SalesManagementImpl implements SalesManagementService {
         return order;
     }
 
-    PaymentResponse doPayment(PaymentInfo paymentInfo, OrderReference orderReference) {
+    PaymentResponse doPayment(PaymentInfo paymentInfo, OrderReference orderReference, PaymentPlan paymentPlan) {
         // payment successful and random  payment reference
 
         String paymentReference = Integer.toString((int) (Math.random() * 1000000000));
