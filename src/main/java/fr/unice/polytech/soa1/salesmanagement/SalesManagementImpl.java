@@ -117,8 +117,7 @@ public class SalesManagementImpl implements SalesManagementService {
             paymentResponse.setSuccess(false);
             paymentResponse.setMessage("ALREADY PAID");
         }
-        else {
-            paymentResponse = doPayment(paymentInfo, order, paymentPlan);
+        else if ((paymentResponse = doPayment(paymentInfo, order, paymentPlan)).isSuccess()) {
             order.setOrderStatus(OrderStatus.PRODUCING);
         }
 
