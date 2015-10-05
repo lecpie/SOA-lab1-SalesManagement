@@ -119,6 +119,7 @@ public class SalesManagementImpl implements SalesManagementService {
         }
         else if ((paymentResponse = doPayment(paymentInfo, order, paymentPlan)).isSuccess()) {
             order.setOrderStatus(OrderStatus.PRODUCING);
+            // Test line
         }
 
         return paymentResponse;
