@@ -29,4 +29,7 @@ public interface OrderService {
 
     @WebResult(name = "delivering_order")
     List <OrderRequest> fetchDeliveringOrders();
+
+    @WebResult(name = "success")
+    boolean cancelOrder (@WebParam(name = "order_id") int orderId);
 }

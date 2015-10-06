@@ -64,25 +64,6 @@ public class OrderServiceImpl implements OrderService {
         return orderRequests.get(orderId);
     }
 
-    public PaymentResponse payOrder(int orderId, PaymentInfo paymentInfo, PaymentPlan paymentPlan) {
-        PaymentResponse paymentResponse = new PaymentResponse();
-        OrderReference order;
-
-        if (!orders.containsKey(orderId)) {
-            paymentResponse.setSuccess(false);
-            paymentResponse.setMessage("NO ORDER");
-        }
-        else if ((order = orders.get(orderId)).getOrderStatus() != OrderStatus.REGISTERED) {
-            paymentResponse.setSuccess(false);
-            paymentResponse.setMessage("ALREADY PAID");
-        }
-        else if ((paymentResponse = doPayment(paymentInfo, order, paymentPlan)).isSuccess()) {
-            order.setOrderStatus(OrderStatus.PRODUCING);
-        }
-
-        return paymentResponse;
-    }
-
     public List<OrderRequest> fetchProducingOrders() {
         List<OrderRequest> producingRequests = new ArrayList<OrderRequest>();
 
@@ -111,31 +92,9 @@ public class OrderServiceImpl implements OrderService {
         return deliveringRequests;
     }
 
-    public boolean setOrderDelivering(int orderId) {
-        OrderReference orderReference = orders.get(orderId);
 
-        if (orderReference.getOrderStatus() == OrderStatus.PRODUCING) {
-            orderReference.setOrderStatus(OrderStatus.DELIVERING);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean setOrderDelivered(int orderId) {
-        OrderReference orderReference = orders.get(orderId);
-
-        if (orderReference.getOrderStatus() == OrderStatus.DELIVERING) {
-            orderReference.setOrderStatus(OrderStatus.DELIVERED);
-
-            return true;
-        }
-
-        return false;    }
-
-    public boolean cancelOrder(int orderId) {
-        if (! orders.containsKey(orderId)) {
+    public boolean cancelOrder (int orderId) {
+        if (!orders.containsKey(orderId) || orders.get(orderId).getOrderStatus() != OrderStatus.REGISTERED) {
             return false;
         }
 
@@ -152,22 +111,12 @@ public class OrderServiceImpl implements OrderService {
 
         Date deliveryDate = new Date();
 
-        deliveryDate.setTime(deliveryDate.getTime() + 30*24*60*60);
+        // Each item takes one day
+        deliveryDate.setTime(deliveryDate.getTime() + orderRequest.getOrder().size() *24*60*60);
 
         order.setEstimatedDelivery(deliveryDate);
 
         return order;
     }
 
-    PaymentResponse doPayment(PaymentInfo paymentInfo, OrderReference orderReference, PaymentPlan paymentPlan) {
-        // payment successful and random  payment reference
-
-        String paymentReference = Integer.toString((int) (Math.random() * 1000000000));
-
-        PaymentResponse response = new PaymentResponse();
-        response.setSuccess(true);
-        response.setMessage(paymentReference);
-
-        return response;
-    }
 }
