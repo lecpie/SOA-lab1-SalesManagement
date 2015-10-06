@@ -14,13 +14,14 @@ public class CatalogServiceImpl implements CatalogService {
 
     private static Catalog catalog;
 
-    public Catalog fetchCatalog() {
-
+    public CatalogServiceImpl() {
         if (catalog == null) {
             catalog = new Catalog();
             createSampleData();
         }
+    }
 
+    public Catalog fetchCatalog() {
         return catalog;
     }
 
@@ -68,5 +69,16 @@ public class CatalogServiceImpl implements CatalogService {
         catalog.addProduct(newProduct);
 
         return newProduct.getId();
+    }
+
+    public boolean removeItemCatalog(int productId) {
+
+        if (catalog.findId(productId) != null) {
+            catalog.removeProduct(productId);
+
+            return true;
+        }
+
+        return false;
     }
 }

@@ -18,12 +18,15 @@ public class Catalog {
     synchronized
     public void addProduct(Product product) {
 
-        synchronized (products) {
-            product.setId(nextId++);
+        product.setId(getNextId());
 
-            this.products.add(product);
-        }
+        this.products.add(product);
 
+    }
+
+    synchronized
+    private int getNextId() {
+        return nextId++;
     }
 
     synchronized

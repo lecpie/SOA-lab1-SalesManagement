@@ -4,12 +4,14 @@ package fr.unice.polytech.soa1.salesmanagement;
 import fr.unice.polytech.soa1.salesmanagement.data.*;
 
 import javax.jws.WebService;
+import java.util.Map;
 
 @WebService(targetNamespace   = "http://informatique.polytech.unice.fr/soa1/salesmanagement/",
         portName          = "ExternalBillingServicetPort",
         serviceName       = "ExternalBillingService",
         endpointInterface = "fr.unice.polytech.soa1.salesmanagement.BillingService")
 public class BillingServiceImpl implements BillingService {
+    static int NextBankingReference = 0;
 
     public PaymentResponse payOrder(OrderRequest orderRequest, PaymentInfo paymentInfo, PaymentPlan paymentPlan) {
         double value = calculatePrice(orderRequest);
@@ -48,10 +50,15 @@ public class BillingServiceImpl implements BillingService {
         }
     }
 
+    private String getNextBankingReference() {
+        return Integer.toString(NextBankingReference++);
+    }
+
+
     private PaymentResponse doPayment(double value, PaymentInfo paymentInfo) {
 
         // Generate random bank transfer reference
-        String paymentReference = Integer.toString((int) (Math.random() * 1000000000));
+        String paymentReference = getNextBankingReference();
 
         PaymentResponse response = new PaymentResponse();
         response.setSuccess(true);

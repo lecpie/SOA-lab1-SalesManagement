@@ -24,19 +24,21 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    synchronized private static int getnewId()  {
+        return nextOrderId++;
+    }
+
     public OrderReference makeOrder(OrderRequest orderRequest, Client client) {
         OrderReference order = estimateOrderRequest(orderRequest);
 
-        synchronized (orders) {
-            int orderId = nextOrderId++;
+        int orderId = getnewId();
 
-            order.setId(orderId);
-            orderRequest.setOrderId(orderId);
-            order.setOrderStatus(OrderStatus.REGISTERED);
+        order.setId(orderId);
+        orderRequest.setOrderId(orderId);
+        order.setOrderStatus(OrderStatus.REGISTERED);
 
-            orders.put(orderId, order);
-            orderRequests.put(orderId, orderRequest);
-        }
+        orders.put(orderId, order);
+        orderRequests.put(orderId, orderRequest);
 
         return order;
     }
