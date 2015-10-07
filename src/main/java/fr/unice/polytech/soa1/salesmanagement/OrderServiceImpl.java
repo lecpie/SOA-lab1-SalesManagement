@@ -18,10 +18,14 @@ public class OrderServiceImpl implements OrderService {
 
     public OrderServiceImpl() {
         if (orders == null || orderRequests == null) {
-            orders        = new HashMap<Integer, OrderReference>();
-            orderRequests = new HashMap<Integer, OrderRequest>();
-            nextOrderId = 0;
+            resetData();
         }
+    }
+
+    public static void resetData() {
+        orders        = new HashMap<Integer, OrderReference>();
+        orderRequests = new HashMap<Integer, OrderRequest>();
+        nextOrderId = 0;
     }
 
     synchronized private static int getnewId()  {
@@ -29,6 +33,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public OrderReference makeOrder(OrderRequest orderRequest, Client client) {
+        // Refuse missing informations or empty product request list
+        if (orderRequest == null || orderRequest.getOrder() == null || orderRequest.getOrder().size() == 0)
+            return null;
+
+        // Refuse an order with a product item with 0 qty
+        for (OrderItem orderItem : orderRequest.getOrder()) {
+            if (orderItem.getQty() == 0)
+                return null;
+        }
+
         OrderReference order = estimateOrderRequest(orderRequest);
 
         int orderId = getnewId();
@@ -111,8 +125,8 @@ public class OrderServiceImpl implements OrderService {
 
         Date deliveryDate = new Date();
 
-        // Each item takes one day
-        deliveryDate.setTime(deliveryDate.getTime() + orderRequest.getOrder().size() *24*60*60);
+        // Each product type takes one week
+        deliveryDate.setTime(deliveryDate.getTime() + orderRequest.getOrder().size() * 7*24*60*60);
 
         order.setEstimatedDelivery(deliveryDate);
 

@@ -14,6 +14,9 @@ public interface CatalogService {
     @WebResult(name = "catalog")
     Catalog fetchCatalog();
 
+    @WebResult(name = "product")
+    Product findProductById(@WebParam(name = "product_id") int productId);
+
     @WebResult(name = "product_id")
     int addItemCatalog (@WebParam(name = "new_product") Product newProduct);
 

@@ -25,7 +25,16 @@ public class CatalogServiceImpl implements CatalogService {
         return catalog;
     }
 
-    private void createSampleData() {
+    public Product findProductById(int productId) {
+        return catalog.findId(productId);
+    }
+
+    public static void resetData() {
+        catalog = new Catalog();
+        createSampleData();
+    }
+
+    private static void createSampleData() {
         // Create some products
 
         Product p1 = new Product();

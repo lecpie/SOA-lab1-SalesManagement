@@ -21,6 +21,11 @@ public class ClientServiceImpl implements ClientService {
         }
     }
 
+    public static void resetData() {
+        clients = new HashMap <Integer, Client>();
+        nextClientId = 0;
+    }
+
     public Client getClientById(int clientId) {
         return clients.get(clientId);
     }

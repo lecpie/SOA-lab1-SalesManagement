@@ -43,6 +43,7 @@
     </dependencies>
 
     <build>
+        <testSourceDirectory>src/test/</testSourceDirectory>
         <plugins>
             <!-- Maven build plugin to create an OSGI bundle instead of a plain JAR file-->
             <plugin>

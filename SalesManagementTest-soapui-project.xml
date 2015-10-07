@@ -42,6 +42,15 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="findProductById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findProductById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findProductByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addItemCatalog">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="addItemCatalog">
@@ -73,6 +82,8 @@
       <xs:element name="addItemCatalogResponse" type="tns:addItemCatalogResponse"/>
       <xs:element name="fetchCatalog" type="tns:fetchCatalog"/>
       <xs:element name="fetchCatalogResponse" type="tns:fetchCatalogResponse"/>
+      <xs:element name="findProductById" type="tns:findProductById"/>
+      <xs:element name="findProductByIdResponse" type="tns:findProductByIdResponse"/>
       <xs:element name="removeItemCatalog" type="tns:removeItemCatalog"/>
       <xs:element name="removeItemCatalogResponse" type="tns:removeItemCatalogResponse"/>
       <xs:complexType name="removeItemCatalog">
@@ -85,9 +96,14 @@
           <xs:element name="success" type="xs:boolean"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="addItemCatalog">
+      <xs:complexType name="findProductById">
         <xs:sequence>
-          <xs:element minOccurs="0" name="new_product" type="tns:product"/>
+          <xs:element name="product_id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findProductByIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="product" type="tns:product"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="product">
@@ -99,6 +115,11 @@
           <xs:element name="name" type="xs:string"/>
           <xs:element name="price" type="xs:double"/>
           <xs:element name="product_type" type="tns:productType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addItemCatalog">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="new_product" type="tns:product"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="addItemCatalogResponse">
@@ -127,6 +148,9 @@
       </xs:simpleType>
     </xs:schema>
   </wsdl:types>
+  <wsdl:message name="findProductByIdResponse">
+    <wsdl:part element="ns1:findProductByIdResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="removeItemCatalog">
     <wsdl:part element="ns1:removeItemCatalog" name="parameters"></wsdl:part>
   </wsdl:message>
@@ -139,6 +163,9 @@
   <wsdl:message name="addItemCatalogResponse">
     <wsdl:part element="ns1:addItemCatalogResponse" name="parameters"></wsdl:part>
   </wsdl:message>
+  <wsdl:message name="findProductById">
+    <wsdl:part element="ns1:findProductById" name="parameters"></wsdl:part>
+  </wsdl:message>
   <wsdl:message name="addItemCatalog">
     <wsdl:part element="ns1:addItemCatalog" name="parameters"></wsdl:part>
   </wsdl:message>
@@ -149,6 +176,10 @@
     <wsdl:operation name="removeItemCatalog">
       <wsdl:input message="ns1:removeItemCatalog" name="removeItemCatalog"></wsdl:input>
       <wsdl:output message="ns1:removeItemCatalogResponse" name="removeItemCatalogResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findProductById">
+      <wsdl:input message="ns1:findProductById" name="findProductById"></wsdl:input>
+      <wsdl:output message="ns1:findProductByIdResponse" name="findProductByIdResponse"></wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="addItemCatalog">
       <wsdl:input message="ns1:addItemCatalog" name="addItemCatalog"></wsdl:input>
@@ -187,7 +218,14 @@
          <product_id>?</product_id>
       </sal:removeItemCatalog>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/CatalogService/removeItemCatalog"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="b1943b8a-86d8-4a08-9790-bf46da0c97ac" wsaVersion="NONE" name="ExternalClientServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/salesmanagement/}ExternalClientServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8181/cxf/ClientServiceImpl?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8181/cxf/ClientServiceImpl?wsdl"><con:part><con:url>http://localhost:8181/cxf/ClientServiceImpl?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ExternalClientService" targetNamespace="http://informatique.polytech.unice.fr/soa1/salesmanagement/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/salesmanagement/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://salesmanagement.soa1.polytech.unice.fr/">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/CatalogService/removeItemCatalog"/></con:call></con:operation><con:operation id="ce8b1198-50b1-4692-b9ec-43f020526df9" isOneWay="false" action="" name="findProductById" bindingOperationName="findProductById" type="Request-Response" outputName="findProductByIdResponse" inputName="findProductById" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="662130f2-b70b-4089-af92-a98b2507b10e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/CatalogServiceImpl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sal:findProductById>
+         <product_id>?</product_id>
+      </sal:findProductById>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/salesmanagement/CatalogService/findProductById"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="b1943b8a-86d8-4a08-9790-bf46da0c97ac" wsaVersion="NONE" name="ExternalClientServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/salesmanagement/}ExternalClientServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8181/cxf/ClientServiceImpl?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8181/cxf/ClientServiceImpl?wsdl"><con:part><con:url>http://localhost:8181/cxf/ClientServiceImpl?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ExternalClientService" targetNamespace="http://informatique.polytech.unice.fr/soa1/salesmanagement/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/salesmanagement/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://salesmanagement.soa1.polytech.unice.fr/">
   <wsdl:import location="http://localhost:8181/cxf/ClientServiceImpl?wsdl=ClientService.wsdl" namespace="http://salesmanagement.soa1.polytech.unice.fr/"></wsdl:import>
   <wsdl:binding name="ExternalClientServiceSoapBinding" type="ns1:ClientService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -845,7 +883,7 @@
             <id>0</id>
             <name>John Doe</name>
          </client>]]></con:value></con:property><con:property><con:name>order_elem</con:name><con:value><![CDATA[<order_reference xmlns:ns2="http://salesmanagement.soa1.polytech.unice.fr/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-            <estimated_delivery>2015-10-06T19:20:20.718+02:00</estimated_delivery>
+            <estimated_delivery>2015-10-07T03:28:57.827+02:00</estimated_delivery>
             <id>6</id>
             <order_status>REGISTERED</order_status>
          </order_reference>]]></con:value></con:property><con:property><con:name>request_elem</con:name><con:value><![CDATA[<order_request xmlns:ns2="http://salesmanagement.soa1.polytech.unice.fr/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
@@ -970,7 +1008,7 @@
          <order_status>DELIVERED</order_status>
       </sal:changeOrderStatus>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="0dac9b3b-ade5-4966-96a6-22b97ffeda02"/><con:assertion type="Schema Compliance" id="70da26f7-3f8f-4fb2-a021-6395f494fcca"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="481ba04e-6b80-4d0c-b9b3-f986a22749c4"/><con:assertion type="XPath Match" id="c1ee3fc8-038d-424c-a842-2bf3ce56505a" name="Check operation successful"><con:configuration><path>//success</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>qty1</con:name><con:value>10</con:value></con:property><con:property><con:name>qty2</con:name><con:value>20</con:value></con:property><con:property><con:name>address</con:name><con:value>123 rue lambda - 123456 lambdaville</con:value></con:property><con:property><con:name>email</con:name><con:value>mail@mail.mail</con:value></con:property><con:property><con:name>name</con:name><con:value>John Doe</con:value></con:property><con:property><con:name>card_number</con:name><con:value>1234123412341234</con:value></con:property><con:property><con:name>card_expire</con:name><con:value>1217</con:value></con:property><con:property><con:name>csc</con:name><con:value>123</con:value></con:property></con:properties></con:testCase><con:testCase id="81eadbaf-c1c9-4714-8051-cdcdca670365" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Add item to catalog" searchProperties="true"><con:settings/><con:testStep type="properties" name="Test properties" id="c6044dfb-c674-4e13-8c33-b9607a9f814a"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>product_id</con:name><con:value>7</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="Add item to catalog" id="f6dd7d6c-f6af-4ecc-aef2-c34fbd8d38bc"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ExternalCatalogServiceSoapBinding</con:interface><con:operation>addItemCatalog</con:operation><con:request name="Add item to catalog" id="827b658e-9cad-46c1-851c-578ef4dc0caa"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/CatalogServiceImpl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="0dac9b3b-ade5-4966-96a6-22b97ffeda02"/><con:assertion type="Schema Compliance" id="70da26f7-3f8f-4fb2-a021-6395f494fcca"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="481ba04e-6b80-4d0c-b9b3-f986a22749c4"/><con:assertion type="XPath Match" id="c1ee3fc8-038d-424c-a842-2bf3ce56505a" name="Check operation successful"><con:configuration><path>//success</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>qty1</con:name><con:value>10</con:value></con:property><con:property><con:name>qty2</con:name><con:value>20</con:value></con:property><con:property><con:name>address</con:name><con:value>123 rue lambda - 123456 lambdaville</con:value></con:property><con:property><con:name>email</con:name><con:value>mail@mail.mail</con:value></con:property><con:property><con:name>name</con:name><con:value>John Doe</con:value></con:property><con:property><con:name>card_number</con:name><con:value>1234123412341234</con:value></con:property><con:property><con:name>card_expire</con:name><con:value>1217</con:value></con:property><con:property><con:name>csc</con:name><con:value>123</con:value></con:property></con:properties></con:testCase><con:testCase id="81eadbaf-c1c9-4714-8051-cdcdca670365" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Add item to catalog" searchProperties="true"><con:settings/><con:testStep type="properties" name="Test properties" id="c6044dfb-c674-4e13-8c33-b9607a9f814a"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>product_id</con:name><con:value>15</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="Add item to catalog" id="f6dd7d6c-f6af-4ecc-aef2-c34fbd8d38bc"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ExternalCatalogServiceSoapBinding</con:interface><con:operation>addItemCatalog</con:operation><con:request name="Add item to catalog" id="827b658e-9cad-46c1-851c-578ef4dc0caa"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/CatalogServiceImpl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <sal:addItemCatalog>
@@ -989,7 +1027,14 @@
    <soapenv:Body>
       <sal:fetchCatalog/>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="ce19fc59-f68b-4694-99f2-d9df951d7452"/><con:assertion type="Schema Compliance" id="4d7cf6f1-f71c-47bb-9e4d-68ff27ad3d5f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="51d487e8-c4da-4f87-b126-28a4adc700c4"/><con:assertion type="XPath Match" id="93baedd2-8084-4ea7-9854-44b005af5abe" name="XPath Match"><con:configuration><path>count(//product[id=${Test properties#product_id}])</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete this item" id="7a8265c9-ceda-44ca-af30-9fe230ecaaa2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ExternalCatalogServiceSoapBinding</con:interface><con:operation>removeItemCatalog</con:operation><con:request name="Delete this item" id="378827c7-c267-44ad-84c5-6d72b347b2d4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/CatalogServiceImpl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="ce19fc59-f68b-4694-99f2-d9df951d7452"/><con:assertion type="Schema Compliance" id="4d7cf6f1-f71c-47bb-9e4d-68ff27ad3d5f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="51d487e8-c4da-4f87-b126-28a4adc700c4"/><con:assertion type="XPath Match" id="93baedd2-8084-4ea7-9854-44b005af5abe" name="XPath Match"><con:configuration><path>count(//product[id=${Test properties#product_id}])</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Check we can find it by id" id="8a236ffe-6e79-423a-aba6-52b8e69204e1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ExternalCatalogServiceSoapBinding</con:interface><con:operation>findProductById</con:operation><con:request name="Check we can find it by id" id="42529296-c262-49c9-bcb0-dde225306634"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/CatalogServiceImpl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sal:findProductById>
+         <product_id>${Test properties#product_id}</product_id>
+      </sal:findProductById>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="f5a3a962-55b6-4fd1-a26a-dc8fd4e68f84"/><con:assertion type="Schema Compliance" id="2f673bf1-30b7-4360-b7a7-4b926aa0fc58"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="267fd7e7-70bb-4922-bbc8-ef238a07ce57"/><con:assertion type="XPath Match" id="74415a8c-6878-4168-a958-dec6604345e0" name="Check the product is here with the right id"><con:configuration><path>count(//product[id=${Test properties#product_id}])</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete this item" id="7a8265c9-ceda-44ca-af30-9fe230ecaaa2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ExternalCatalogServiceSoapBinding</con:interface><con:operation>removeItemCatalog</con:operation><con:request name="Delete this item" id="378827c7-c267-44ad-84c5-6d72b347b2d4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8181/cxf/CatalogServiceImpl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://salesmanagement.soa1.polytech.unice.fr/">
    <soapenv:Header/>
    <soapenv:Body>
       <sal:removeItemCatalog>
